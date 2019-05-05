@@ -1,5 +1,57 @@
 body {
 	margin:0;
 	padding:0;
-	background: #eaeaea;
+}
+.btn {
+	margin: 0px;
+}
+.content-wrapper {
+	background-color: #FFF;
+	padding: 15px;
+}
+
+.floating-button {
+	border-radius: 50% !important;
+	padding: 20px 25px;
+	position:fixed;
+	display: block;
+	bottom: 10px;
+	right: 10px;
+}
+
+/* validation alert style */
+.form-error {
+	display:none;
+	color:red;
+}
+.form-error.active {
+	display:block;
+}
+.is-invalid {
+	border:1px solid red;
+}
+
+.header-section {
+	padding-top: 35px;
+	padding-bottom: 35px;
+}
+
+.slide-item {
+	height: 50vh !important;
+	width: 100%;
+	background-position: center;
+}
+
+.product-container {
+	margin-bottom: 20px;
+}
+
+.product-title {
+	font-weight:bold;
+	color:#3498db;
+}
+
+.topsis-rating {
+	font-size: 12px;
+	font-style:italic;
 }

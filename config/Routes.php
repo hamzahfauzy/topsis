@@ -1,17 +1,27 @@
 <?php
 use vendor\zframework\Route;
-use app\User;
 
 Route::get("/","IndexController@index");
-Route::get("/show/{id}","IndexController@user");
-Route::get("/hello/{username}/{password}",function($username,$password){ 
-	$user = User::where('username',$username)->where('password',$password)->first();
-	if(empty($user))
-	{
-		echo "Not Found";
-	}
-	else
-	{
-		print_r($user);
-	}
+Route::get("/login","IndexController@login");
+Route::get("/logout","IndexController@logout");
+Route::post("/login","IndexController@doLogin");
+
+Route::get("/detail/{id}","IndexController@detail");
+
+Route::middleware('Admin')->prefix("/admin")->namespaces("admin")->group(function(){
+	Route::get("/","IndexController@index");
+
+	Route::get("/kriteria","KriteriaController@index");
+	Route::get("/kriteria/create","KriteriaController@create");
+	Route::get("/kriteria/edit/{kriteria}","KriteriaController@edit");
+	Route::post("/kriteria/insert","KriteriaController@insert");
+	Route::post("/kriteria/update","KriteriaController@update");
+	Route::get("/kriteria/delete/{kriteria}","KriteriaController@delete");
+
+	Route::get("/products","ProductController@index");
+	Route::get("/products/create","ProductController@create");
+	Route::get("/products/edit/{product}","ProductController@edit");
+	Route::post("/products/insert","ProductController@insert");
+	Route::post("/products/update","ProductController@update");
+	Route::get("/products/delete/{product}","ProductController@delete");
 });
