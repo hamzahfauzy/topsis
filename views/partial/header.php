@@ -35,11 +35,12 @@
 
   	<ul class="navbar-nav ml-auto">
       <li class="nav-item <?= get_page() == 'Home' ? 'active' : '' ?>">
-        <a class="nav-link" href="<?= base_url() ?>/admin">
+        <a class="nav-link" href="<?= base_url() ?>/<?= Session::user()->level == 1 ? 'admin' : 'pembeli' ?>">
           <i class="fas fa-home"></i> Home
           <span class="sr-only">(current)</span>
         </a>
       </li>
+      <?php if(Session::user()->level == 1){ ?>
       <li class="nav-item <?= get_page() == 'Kriteria' ? 'active' : '' ?>">
         <a class="nav-link" href="<?= base_url() ?>/admin/kriteria">
           <i class="fab fa-typo3"></i> Kriteria
@@ -48,6 +49,16 @@
       <li class="nav-item <?= get_page() == 'Products' ? 'active' : '' ?>">
         <a class="nav-link" href="<?= base_url() ?>/admin/products">
           <i class="fas fa-list-alt"></i> Products</a>
+      </li>
+      <?php }else{ ?>
+      <li class="nav-item <?= get_page() == 'Products' ? 'active' : '' ?>">
+        <a class="nav-link" href="<?= base_url() ?>/">
+          <i class="fas fa-list-alt"></i> Produk</a>
+      </li>
+      <?php } ?>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= base_url() ?>/<?= Session::user()->level == 1 ? 'admin' : 'pembeli' ?>/transaksi">
+          <i class="fas fa-money-bill-alt"></i> Transaksi</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url() ?>/logout">

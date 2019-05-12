@@ -20,6 +20,16 @@
 					</div>
 
 					<div class="form-group">
+						<label for="kategori">Kategori</label>
+						<select name="kategori" class="form-control" required="">
+							<option value="">- Pilih Kategori -</option>
+							<option value="Jantan" <?= $product->kategori == 'Jantan' ? 'selected=""' : '' ?>>Jantan</option>
+							<option value="Betina" <?= $product->kategori == 'Betina' ? 'selected=""' : '' ?>>Betina</option>
+						</select>
+						<span class="form-error kategori">Kategori tidak boleh kosong</span>
+					</div>
+
+					<div class="form-group">
 						<label for="deskripsi">Deskripsi</label>
 						<textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi Produk" required=""><?= $product->deskripsi ?></textarea>
 						<span class="form-error deskripsi">Nama Produk tidak boleh kosong</span>
@@ -27,6 +37,8 @@
 
 					<div class="form-group">
 						<label for="harga">Harga</label>
+						<br>
+						<i>Harga tidak boleh menggunakan titik (.)</i>
 						<input type="text" name="harga" class="form-control" placeholder="Harga Produk" required="" value="<?= $product->harga ?>">
 						<span class="form-error harga">Harga Produk tidak boleh kosong</span>
 					</div>

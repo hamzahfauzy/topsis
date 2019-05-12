@@ -24,9 +24,9 @@
 					<tr>
 						<td><?= $no++ ?></td>
 						<td>
-							<?= $rs->nama ?>
+							<?= $rs->nama ?> (<i><?= $rs->kategori ?></i>)
 							<br>
-							Harga : Rp. <b><?=$rs->harga?></b> 
+							Harga : Rp. <b><?= number_format($rs->harga)?></b> 
 						</td>
 						<td>
 							<!-- <a href="<?= base_url() ?>/admin/kriteria/penilaian/<?=$rs->id?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a> -->

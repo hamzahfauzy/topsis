@@ -53,6 +53,7 @@ class ProductController extends Controller
 		$product->nama = $request->nama;
 		$product->deskripsi = $request->deskripsi;
 		$product->harga = $request->harga;
+		$product->kategori = $request->kategori;
 		$product->gambar = $gambar['name'];
 		$product_id = $product->save();
 
@@ -82,6 +83,7 @@ class ProductController extends Controller
 		$product = Product::where("id",$request->id)->first();
 		$product->nama = $request->nama;
 		$product->deskripsi = $request->deskripsi;
+		$product->kategori = $request->kategori;
 		$product->harga = $request->harga;
 		if($product->save())
 		{

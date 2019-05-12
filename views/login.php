@@ -36,7 +36,7 @@
 				<h2 align="center" class="text-info">Login</h2>
 				<hr>
 				<p align="center">
-					Gunakan username dan password admin untuk login ke dalam sistem.
+					Gunakan username dan password untuk login ke dalam sistem.
 				</p>
 				<div class="form-container">
 					<?php if ($error) { ?>
@@ -44,7 +44,7 @@
 						Username or Password is invalid.
 					</div>						
 					<?php } ?>
-					<form method="post" action="/login">
+					<form method="post" action="<?= base_url() ?>/login">
 						<div class="form-group">
 							<input type="text" name="username" id="username" class="form-control input-username" placeholder="Username" required="">
 							<span class="form-error username">username cannot be empty</span>
