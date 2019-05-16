@@ -2,6 +2,7 @@
 use vendor\zframework\Route;
 
 Route::get("/","IndexController@index");
+Route::get("/topsis","IndexController@tampilTopsis");
 Route::get("/tentang","IndexController@tentang");
 Route::get("/login","IndexController@login");
 Route::get("/register","IndexController@register");
