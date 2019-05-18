@@ -29,7 +29,7 @@
 						<hr>
 						<?php foreach ($product->topsis() as $key => $value): ?>
 						<h4><?= $value->kriteria()->nama ?></h4>
-						<p>Nilai : <b><?= $value->nilai ?></b> | Bobot : <b><?= $value->kriteria()->bobot ?></b></p>
+						<p>Nilai : <b><?= $value->nilaiText()->list_label; ?></b> (<?=$value->nilai?>) | Bobot : <b><?= $value->kriteria()->bobot ?></b></p>
 						<?php endforeach ?>
 						<h2>Hasil Penilaian : <?= $vi[$product->id] ?></h2>
 					</div>

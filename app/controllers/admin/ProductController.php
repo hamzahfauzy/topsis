@@ -13,6 +13,7 @@ class ProductController extends Controller
 	{
 		parent::__construct();
 		$this->product = new Product;
+		$this->kriteria = new Kriteria;
 	}
 
 	function index()
@@ -35,6 +36,7 @@ class ProductController extends Controller
 		$error = isset($_GET['error']) ? $_GET['error'] : false;
 		$data["error"] = $error;
 		$data["product"] = $this->product->where('id',$product)->first();
+		$data["kriteria"] = $this->kriteria->get();
 		return $this->view->render('admin.product.edit')->with($data);
 	}
 
@@ -55,7 +57,7 @@ class ProductController extends Controller
 		$product->harga = $request->harga;
 		$product->kategori = $request->kategori;
 		$product->gambar = $gambar['name'];
-		$product_id = $product->save();
+		$kriteria_id = $product->save();
 
 		$kriteria = $request->kriteria;
 
@@ -91,6 +93,12 @@ class ProductController extends Controller
 
 			foreach ($kriteria as $key => $value) {
 				$topsis = Topsis::where('product_id',$request->id)->where('kriteria_id',$key)->first();
+				if(empty($topsis))
+				{
+					$topsis = new Topsis;
+					$topsis->product_id = $request->id;
+					$topsis->kriteria_id = $key;
+				}
 				$topsis->nilai = $value;
 				$topsis->save();
 			}

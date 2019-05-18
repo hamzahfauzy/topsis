@@ -45,11 +45,14 @@
 
 					<h2>Kriteria Topsis</h2>
 					<hr>
-					<?php foreach ($product->topsis() as $key => $value): ?>
+					<?php foreach ($kriteria as $key => $value): ?>
 					<div class="form-group">
-						<label for="kriteria[<?=$value->kriteria_id ?>]"><?=$value->kriteria()->nama ?></label>
-						<input type="number" name="kriteria[<?=$value->kriteria_id ?>]" class="form-control" required="" min="1" max="<?=$value->kriteria()->bobot ?>" value="<?= $value->nilai ?>">
-						<span style="font-size: 12px"><i>Bobot Maksimal <?= $value->kriteria()->bobot ?></i></span>
+						<label for="kriteria[<?=$value->id ?>]"><?=$value->nama ?></label>
+						<select name="kriteria[<?=$value->id ?>]" class="form-control">
+							<?php foreach($value->lists() as $list){ ?>
+							<option value="<?=$list->list_value?>" <?= !empty($value->nilaiTopsis($product->id)) && $value->nilaiTopsis($product->id)->nilai == $list->list_value ? 'selected=""' : '' ?>><?=$list->list_label?></option>
+							<?php } ?>
+						</select>
 					</div>
 					<?php endforeach ?>
 					<button class="btn btn-danger"><i class="fa fa-save"></i> Simpan</button>

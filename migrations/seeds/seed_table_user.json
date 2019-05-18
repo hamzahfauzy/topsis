@@ -1,0 +1,12 @@
+{
+	"table_name" : "users",
+	"values" : [
+		{
+			"id": 0,
+			"username": "admin",
+			"password": {"value" : "admin","option":"md5"},
+			"level" : "admin"
+		}
+	]
+}
+

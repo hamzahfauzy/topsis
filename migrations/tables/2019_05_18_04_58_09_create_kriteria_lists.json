@@ -1,0 +1,39 @@
+	{
+		"action": "create",
+		"table_name" : "kriteria_lists",
+		"fields" : [
+			{
+				"name":"id",
+				"data_type":"int",
+				"length":11,
+				"default":"auto_increment"
+			},
+			{
+				"name":"kriteria_id",
+				"data_type":"int",
+				"length":11
+			},
+			{
+				"name":"list_label",
+				"data_type":"varchar",
+				"length":30
+			},
+			{
+				"name":"list_value",
+				"data_type":"varchar",
+				"length":30
+			}
+		],
+		"primary_key" : "id",
+		"foreign_key" : [
+			{
+				"field_name":"kriteria_id",
+				"references":"kriteria",
+				"references_field":"id",
+				"event":{
+					"delete":"cascade",
+					"update":"no action"
+				}
+			}
+		]
+	}

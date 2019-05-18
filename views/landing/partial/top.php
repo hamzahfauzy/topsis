@@ -1,29 +1,67 @@
-<div class="header-section">
-		<div class="row">
-			<div class="col-sm-12 col-md-6">
-				<table>
-					<tr>
-						<td>
-							<img src="<?= $this->assets->get('assets/sapi.png') ?>" width="100px">
-						</td>
-						<td>
-							<h2>Rawang Ternak<br>Shop</h2>
-						</td>
-					</tr>
-				</table>
-			</div>
+<?php $kriteria = app\Kriteria::get(); ?>
+<!-- Central Modal Small -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
 
-			<div class="col-sm-12 col-md-6">
-				<div class="float-right" style="padding-top: 25px;">
-					<i class="fa fa-phone fa-rotate-90 text-success"></i> <a href="tel:081234567890"><b>0812 3456 7890</b></a>
-					|
-					<a href="<?=base_url()?>/login"><i class="fa fa-sign-in-alt text-warning"></i> <b>Login</b></a>
-					|
-					<a href="<?=base_url()?>/register"><i class="fas fa-user-plus"></i> <b>Register</b></a>
-				</div>
+  <!-- Change class .modal-sm to change the size of the modal -->
+  <form action="<?= base_url() ?>">
+  <input type="hidden" name="cari" value="1">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel">Cari Ternak</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <?php foreach ($kriteria as $key => $value): ?>
+        	<div class="form-group">
+				<label for="kriteria[<?=$value->id ?>]"><?=$value->nama ?></label>
+				<select name="kriteria[<?=$value->id ?>]" class="form-control">
+					<?php foreach($value->lists() as $list){ ?>
+					<option value="<?=$list->list_value?>"><?=$list->list_label?></option>
+					<?php } ?>
+				</select>
+			</div>
+        <?php endforeach ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">&times; Close</button>
+        <button type="submit" class="btn btn-primary">Cari</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+<!-- Central Modal Small -->
+
+<div class="header-section">
+	<div class="row">
+		<div class="col-sm-12 col-md-6">
+			<table>
+				<tr>
+					<td>
+						<img src="<?= $this->assets->get('assets/sapi.png') ?>" width="100px">
+					</td>
+					<td>
+						<h2>Rawang Ternak<br>Shop</h2>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="col-sm-12 col-md-6">
+			<div class="float-right" style="padding-top: 25px;">
+				<i class="fa fa-phone fa-rotate-90 text-success"></i> <a href="tel:081234567890"><b>0812 3456 7890</b></a>
+				|
+				<a href="<?=base_url()?>/login"><i class="fa fa-sign-in-alt text-warning"></i> <b>Login</b></a>
+				|
+				<a href="<?=base_url()?>/register"><i class="fas fa-user-plus"></i> <b>Register</b></a>
 			</div>
 		</div>
 	</div>
+</div>
 
 	<!--Navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark info-color">
@@ -58,9 +96,7 @@
 	    </ul>
 
 	    <form class="form-inline">
-	    	<input type="hidden" name="action" value="search">
-		    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-		    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+		    <button class="btn" type="button" data-toggle="modal" data-target="#searchModal"><i class="fas fa-search"></i> Cari</button>
 		</form>
 	  </div>
 	  <!-- Collapsible content -->

@@ -53,8 +53,11 @@
 					<?php foreach ($kriteria as $key => $value): ?>
 					<div class="form-group">
 						<label for="kriteria[<?=$value->id ?>]"><?=$value->nama ?></label>
-						<input type="number" name="kriteria[<?=$value->id ?>]" class="form-control" required="" min="1" max="<?=$value->bobot ?>">
-						<span style="font-size: 12px"><i>Bobot Maksimal <?= $value->bobot ?></i></span>
+						<select name="kriteria[<?=$value->id ?>]" class="form-control">
+							<?php foreach($value->lists() as $list){ ?>
+							<option value="<?=$list->list_value?>"><?=$list->list_label?></option>
+							<?php } ?>
+						</select>
 					</div>
 					<?php endforeach ?>
 					<button class="btn btn-danger"><i class="fa fa-save"></i> Simpan</button>

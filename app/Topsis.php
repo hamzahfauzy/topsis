@@ -16,4 +16,12 @@ class Topsis extends Model
 	{
 		return $this->hasOne(Kriteria::class,['id'=>'kriteria_id']);
 	}
+
+	function nilaiText()
+	{
+		$model = KriteriaList::where('list_value',$this->nilai)
+							 ->where('kriteria_id',$this->kriteria_id)
+							 ->first();
+		return $model;
+	}
 }

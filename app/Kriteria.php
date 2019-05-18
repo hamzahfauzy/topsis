@@ -16,4 +16,15 @@ class Kriteria extends Model
 	{
 		return $this->hasMany(Topsis::class,['kriteria_id'=>'id']);
 	}
+
+	function lists()
+	{
+		return $this->hasMany(KriteriaList::class, ['kriteria_id' => 'id']);
+	}
+
+	function nilaiTopsis($id)
+	{
+		$model = Topsis::where('product_id',$id)->where('kriteria_id',$this->id)->first();
+		return $model;
+	}
 }

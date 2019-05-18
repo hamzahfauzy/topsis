@@ -4,7 +4,7 @@ use vendor\zframework\Controller;
 use vendor\zframework\Session;
 use vendor\zframework\util\Request;
 use app\Kriteria;
-use app\MatriksKriteria;
+use app\KriteriaList;
 
 class KriteriaController extends Controller
 {
@@ -75,33 +75,64 @@ class KriteriaController extends Controller
 		return;
 	}
 
-	function perhitungan()
+	function show($kriteria)
 	{
-		$perhitungan_kriteria = MatriksKriteria::get();
-		$kriteria = Kriteria::get();
-		return $this->view->render('admin.kriteria.perhitungan')->with([
-			'perhitungan_kriteria' => $perhitungan_kriteria,
+		$kriteria = Kriteria::where('id',$kriteria)->first();
+		return $this->view->render('admin.kriteria.list.index')->with([
 			'kriteria' => $kriteria,
 		]);
 	}
 
-	function savePerhitungan(Request $request)
+	function listCreate($kriteria)
 	{
-		$perhitungan = MatriksKriteria::where('kriteria_1_id',$request->kriteria1)
-										->where('kriteria_2_id',$request->kriteria2)
-										->orwhere('kriteria_1_id',$request->kriteria2)
-										->where('kriteria_2_id',$request->kriteria1)
-										->first();
-		if(empty($perhitungan))
-		{
-			$perhitungan = new MatriksKriteria;
-		}
-		$perhitungan->kriteria_1_id = $request->kriteria1;
-		$perhitungan->kriteria_2_id = $request->kriteria2;
-		$perhitungan->nilai = $request->nilai;
-		$perhitungan->save();
+		$kriteria = Kriteria::where('id',$kriteria)->first();
+		$error = isset($_GET['error']) ? $_GET['error'] : false;
+		return $this->view->render('admin.kriteria.list.create')->with([
+			'kriteria' => $kriteria,
+			'error' => $error
+		]);
+	}
 
-		$this->redirect()->url("/admin/kriteria/perhitungan");
+	function listEdit($kriteria, $list)
+	{
+		$kriteria = Kriteria::where('id',$kriteria)->first();
+		$list = KriteriaList::where('id',$list)->first();
+		$error = isset($_GET['error']) ? $_GET['error'] : false;
+		return $this->view->render('admin.kriteria.list.edit')->with([
+			'kriteria' => $kriteria,
+			'list' => $list,
+			'error' => $error
+		]);
+	}
+
+	function listSave(Request $request)
+	{
+		$list = new KriteriaList;
+		$list->kriteria_id = $request->kriteria_id;
+		$list->list_label = $request->list_label;
+		$list->list_value = $request->list_value;
+		$list->save();
+
+		$this->redirect()->url("/admin/kriteria/list/".$request->kriteria_id);
+		return;
+	}
+
+	function listUpdate(Request $request)
+	{
+		$list = KriteriaList::where('id',$request->id)->first();
+		$kriteria_id = $list->kriteria_id;
+		$list->list_label = $request->list_label;
+		$list->list_value = $request->list_value;
+		$list->save();
+
+		$this->redirect()->url("/admin/kriteria/list/".$kriteria_id);
+		return;
+	}
+
+	function listDelete($kriteria, $list)
+	{
+		KriteriaList::delete($list);
+		$this->redirect()->url("/admin/kriteria/list/".$kriteria);
 		return;
 	}
 

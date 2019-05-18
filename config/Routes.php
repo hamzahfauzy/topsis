@@ -32,6 +32,13 @@ Route::middleware('Admin')->prefix("/admin")->namespaces("admin")->group(functio
 	Route::post("/kriteria/update","KriteriaController@update");
 	Route::get("/kriteria/delete/{kriteria}","KriteriaController@delete");
 
+	Route::get("/kriteria/list/{kriteria}","KriteriaController@show");
+	Route::get("/kriteria/list/{kriteria}/create","KriteriaController@listCreate");
+	Route::get("/kriteria/list/{kriteria}/edit/{list}","KriteriaController@listEdit");
+	Route::get("/kriteria/list/{kriteria}/delete/{list}","KriteriaController@listdelete");
+	Route::post("/kriteria/list/save","KriteriaController@listSave");
+	Route::post("/kriteria/list/update","KriteriaController@listUpdate");
+
 	Route::get("/products","ProductController@index");
 	Route::get("/products/create","ProductController@create");
 	Route::get("/products/edit/{product}","ProductController@edit");

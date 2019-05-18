@@ -29,9 +29,9 @@
 							Bobot : <b><?=$rs->bobot?></b> 
 						</td>
 						<td>
-							<!-- <a href="<?= base_url() ?>/admin/kriteria/penilaian/<?=$rs->id?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a> -->
-							<a href="<?= base_url() ?>/admin/kriteria/edit/<?=$rs->id?>" class="btn btn-sm btn-success"><i class="fa fa-pencil-alt"></i></a>
-							<a href="<?= base_url() ?>/admin/kriteria/delete/<?=$rs->id?>" class="btn btn-sm btn-warning"><i class="fa fa-trash"></i></a>
+							<a href="<?= base_url() ?>/admin/kriteria/list/<?=$rs->id?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+							<a href="<?= base_url() ?>/admin/kriteria/edit/<?=$rs->id?>" class="btn btn-sm btn-success"><i class="fa fa-pencil-alt"></i> Edit</a>
+							<a href="<?= base_url() ?>/admin/kriteria/delete/<?=$rs->id?>" class="btn btn-sm btn-warning"><i class="fa fa-trash"></i> Hapus</a>
 						</td>
 					</tr>
 					<?php endforeach ?>

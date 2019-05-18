@@ -5,6 +5,7 @@ use vendor\zframework\Session;
 use vendor\zframework\util\Request;
 use app\User;
 use app\Product;
+use app\Topsis;
 use app\Kriteria;
 use app\Transaksi;
 
@@ -113,18 +114,18 @@ class IndexController extends Controller
 		return $vi;
 	}
 
-	function doTopsis($type = false)
+	function doTopsis($products = false)
 	{
 		// TOPSIS SECTION
 		// FIND ALL VALUE GROUPED BY KRITERIA
-		if($type == false)
+		if($products == false)
 		{
 			$products = Product::get();
 		}
-		else
-		{
-			$products = Product::where('kategori',$type)->get();
-		}
+		// else
+		// {
+		// 	$products = Product::where('kategori',$type)->get();
+		// }
 		if(count($products) == 1)
 		{
 			return [$products[0]->id => 1];
@@ -188,16 +189,39 @@ class IndexController extends Controller
 	function index()
 	{
 		$type = isset($_GET['type']) ? $_GET['type'] : false;
+		$cari = isset($_GET['cari']) ? $_GET['cari'] : false;
 		if($type)
 		{
 			$products = Product::where('kategori',$type)->get();	
+		}
+		elseif($cari)
+		{
+			$kriteria = $_GET['kriteria'];
+			$result = [];
+			foreach ($kriteria as $key => $value) {
+				$topsis = Topsis::where('kriteria_id',$key)->where('nilai',$value)->get();
+				if(!empty($topsis))
+					foreach ($topsis as $val) {
+						$result[] = $val;
+					}
+			}
+			$products = [];
+			$exists = [];
+			foreach ($result as $key => $value) {
+				if(in_array($value->product_id, $exists))
+					continue;
+				$product = Product::where('id',$value->product_id)->first();
+				$products[] = $product;
+				$exists[] = $value->product_id;
+			}
 		}
 		else
 		{
 			$products = Product::get();
 		}
-		$data["vi"] = $this->doTopsis($type);
+		$data["vi"] = $this->doTopsis($products);
 		$data["products"] = $products;
+		$data["kriteria"] = Kriteria::get();
 		return $this->view->render('landing.index')->with($data);
 	}
 
@@ -205,6 +229,7 @@ class IndexController extends Controller
 	{
 		$data["vi"] = $this->doTopsis();
 		$data["product"] = $id;
+		$data["kriteria"] = Kriteria::get();
 		return $this->view->render('landing.detail')->with($data);
 	}
 
@@ -235,6 +260,7 @@ class IndexController extends Controller
 
 	function tentang()
 	{
+		$data["kriteria"] = Kriteria::get();
 		return $this->view->render('landing.tentang');
 	}
 
