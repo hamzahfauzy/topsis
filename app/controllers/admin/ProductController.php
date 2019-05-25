@@ -57,7 +57,7 @@ class ProductController extends Controller
 		$product->harga = $request->harga;
 		$product->kategori = $request->kategori;
 		$product->gambar = $gambar['name'];
-		$kriteria_id = $product->save();
+		$product_id = $product->save();
 
 		$kriteria = $request->kriteria;
 

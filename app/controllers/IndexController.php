@@ -219,9 +219,16 @@ class IndexController extends Controller
 		{
 			$products = Product::get();
 		}
-		$data["vi"] = $this->doTopsis($products);
-		$data["products"] = $products;
-		$data["kriteria"] = Kriteria::get();
+		if(!empty($products))
+		{
+			$data["vi"] = $this->doTopsis($products);
+			$data["products"] = $products;
+			$data["kriteria"] = Kriteria::get();
+		}
+		else
+		{
+			$data['products'] = [];
+		}
 		return $this->view->render('landing.index')->with($data);
 	}
 
