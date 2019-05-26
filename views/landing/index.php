@@ -32,17 +32,27 @@ if(isset($vi))
 						<td>#</td>
 						<td>Nama</td>
 						<td>Rangking</td>
-						<td>Detail</td>
 						<td>Foto</td>
+						<td></td>
 					</tr>
-					<?php $no=1; foreach ($products as $key => $product): ?>
+					<?php 
+					$no=1;
+					foreach ($vi as $k => $rank):
+						foreach ($products as $key => $product): 
+							if($product->id != $k) continue;
+					?>
 					<tr>
 						<td><?= $no++ ?></td>
 						<td><?= $product->nama ?></td>
 						<td><?= array_search($product->id, array_keys($vi))+1; ?></td>
-						<td><a href="<?= base_url() ?>/detail/<?=$product->id?>" class="btn btn-block btn-success"><i class="fa fa-eye"></i> Detail</a></td>
 						<td><img src="<?=$this->assets->get('uploads/'.$product->gambar)?>" class="img-thumbnail"></td>
+						<td>
+							<a href="<?= base_url() ?>/detail/<?=$product->id?>" class="btn btn-block btn-success"><i class="fa fa-eye"></i> Detail</a>
+							<p></p>
+							<a href="<?= base_url() ?>/beli/<?= $product->id ?>" class="btn btn-info btn-block">Beli</a>
+						</td>
 					</tr>
+						<?php endforeach ?>
 					<?php endforeach ?>
 				</table>
 			</div>
