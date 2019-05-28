@@ -47,6 +47,7 @@
 							<?php } ?>
 						</td>
 						<td>
+							<span class="label label-success">
 							<?= 
 								$rs->status == 1 ? 'Bukti DP Belum dikirim'    :
 								($rs->status == 2 ? 'Bukti DP Sudah dikirim'   : 
@@ -55,6 +56,14 @@
 									)
 								)
 							?>
+							</span>
+							<br>
+
+							<?php if($rs->status == 3){ ?>
+								<a href="<?= base_url() ?>/pembeli/transaksi/invoice/<?= $rs->id ?>" class="text-primary" target="_blank">
+									#<?= strtoupper(substr(md5($rs->id), 0, 6)) ?>
+								</a>
+							<?php } ?>
 						</td>
 					</tr>
 					<?php endforeach ?>

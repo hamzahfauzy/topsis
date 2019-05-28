@@ -16,14 +16,18 @@ Route::get("/beli/{id}","IndexController@beli");
 Route::middleware('Pembeli')->prefix('/pembeli')->namespaces("pembeli")->group(function(){
 	Route::get('/','IndexController@index');
 	Route::get('/transaksi','IndexController@index');
+	Route::get('/transaksi/invoice/{id}','IndexController@invoice');
 	Route::post('/upload','IndexController@upload');
 });
 
 Route::middleware('Admin')->prefix("/admin")->namespaces("admin")->group(function(){
 	Route::get("/","IndexController@index");
+	Route::get("/hasil","IndexController@hasil");
+
 	Route::get("/transaksi","IndexController@transaksi");
 	Route::get("/transaksi/terima/{id}","IndexController@terima");
 	Route::get("/transaksi/tolak/{id}","IndexController@tolak");
+	Route::get('/transaksi/invoice/{id}','IndexController@invoice');
 
 	Route::get("/kriteria","KriteriaController@index");
 	Route::get("/kriteria/create","KriteriaController@create");

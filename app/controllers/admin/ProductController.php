@@ -18,7 +18,10 @@ class ProductController extends Controller
 
 	function index()
 	{
-		$products = $this->product->get();
+		if(Session::user()->level == 1)
+			$products = $this->product->get();
+		else
+			$products = $this->product->where('penjual_id',Session::get('id'))->get();
 		return $this->view->render("admin.product.index")->with('products',$products);
 	}
 
@@ -57,6 +60,7 @@ class ProductController extends Controller
 		$product->harga = $request->harga;
 		$product->kategori = $request->kategori;
 		$product->gambar = $gambar['name'];
+		$product->penjual_id = Session::get('id');
 		$product_id = $product->save();
 
 		$kriteria = $request->kriteria;

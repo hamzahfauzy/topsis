@@ -13,6 +13,7 @@
 				<table class="table table-bordered">
 					<tr>
 						<td>No</td>
+						<td>Invoice</td>
 						<td>Pembeli</td>
 						<td>Produk</td>
 						<td>Bukti</td>
@@ -27,6 +28,11 @@
 					<?php $no=1; foreach($transaksi as $rs): ?>
 					<tr>
 						<td><?= $no++ ?></td>
+						<td>
+							<a href="<?= base_url() ?>/admin/transaksi/invoice/<?= $rs->id ?>" class="text-primary" target="_blank">
+								#<?= strtoupper(substr(md5($rs->id), 0, 6)) ?>
+							</a>
+						</td>
 						<td>
 							<?= $rs->pembeli()->nama_lengkap ?>
 						</td>

@@ -54,6 +54,14 @@
 							<span class="form-error no_telepon">No Telepon cannot be empty</span>
 						</div>
 						<div class="form-group">
+							<label>Daftar Sebagai</label>
+							<select name="level" required="" class="form-control">
+								<option value="2">Pembeli</option>
+								<option value="3">Penjual</option>
+							</select>
+							<span class="form-error no_telepon">No Telepon cannot be empty</span>
+						</div>
+						<div class="form-group">
 							<label>Username</label>
 							<input type="text" name="username" id="username" class="form-control" placeholder="Username" required="">
 							<span class="form-error username">username cannot be empty</span>

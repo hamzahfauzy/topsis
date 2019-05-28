@@ -31,4 +31,9 @@ class IndexController extends Controller
 		return;
 	}
 
+	function invoice(Transaksi $id)
+	{
+		return $this->view->render('cetak')->with('transaksi',$id);
+	}
+
 }

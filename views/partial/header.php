@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>TOPSIS</title>
+	<title>Penjualan Sapi Online</title>
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="<?=$this->assets->get('font-awesome/css/fontawesome.css')?>">
 	<link rel="stylesheet" href="<?=$this->assets->get('font-awesome/css/brands.css')?>">
@@ -22,7 +22,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark info-color">
   <div class="container">
   <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">TOPSIS</a>
+  <a class="navbar-brand" href="#">Penjualan Sapi Online</a>
 
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -50,16 +50,30 @@
         <a class="nav-link" href="<?= base_url() ?>/admin/products">
           <i class="fas fa-list-alt"></i> Products</a>
       </li>
-      <?php }else{ ?>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= base_url() ?>/admin/hasil" target="_blank">
+          <i class="fas fa-list-alt"></i> Hasil Perhitungan</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= base_url() ?>/admin/transaksi">
+          <i class="fas fa-money-bill-alt"></i> Transaksi</a>
+      </li>
+      <?php }elseif(Session::user()->level == 2){ ?>
       <li class="nav-item <?= get_page() == 'Products' ? 'active' : '' ?>">
         <a class="nav-link" href="<?= base_url() ?>/">
           <i class="fas fa-list-alt"></i> Produk</a>
       </li>
-      <?php } ?>
       <li class="nav-item">
-        <a class="nav-link" href="<?= base_url() ?>/<?= Session::user()->level == 1 ? 'admin' : 'pembeli' ?>/transaksi">
+        <a class="nav-link" href="<?= base_url() ?>/pembeli/transaksi">
           <i class="fas fa-money-bill-alt"></i> Transaksi</a>
       </li>
+      <?php }else{ ?>
+      <li class="nav-item <?= get_page() == 'Products' ? 'active' : '' ?>">
+        <a class="nav-link" href="<?= base_url() ?>/admin/products">
+          <i class="fas fa-list-alt"></i> Products</a>
+      </li>
+      <?php } ?>
+      
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url() ?>/logout">
           <i class="fas fa-sign-out-alt"></i> Logout</a>

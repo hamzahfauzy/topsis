@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>TOPSIS</title>
+	<title>Penjualan Sapi Online</title>
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="<?=$this->assets->get('font-awesome/css/fontawesome.css')?>">
 	<link rel="stylesheet" href="<?=$this->assets->get('font-awesome/css/brands.css')?>">

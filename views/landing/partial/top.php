@@ -1,4 +1,7 @@
-<?php $kriteria = app\Kriteria::get(); ?>
+<?php 
+use vendor\zframework\Session;
+$kriteria = app\Kriteria::get(); 
+?>
 <!-- Central Modal Small -->
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
@@ -54,10 +57,17 @@
 		<div class="col-sm-12 col-md-6">
 			<div class="float-right" style="padding-top: 25px;">
 				<i class="fa fa-phone fa-rotate-90 text-success"></i> <a href="tel:081234567890"><b>0812 3456 7890</b></a>
+				<?php if(!Session::get('id')){ ?>
 				|
 				<a href="<?=base_url()?>/login"><i class="fa fa-sign-in-alt text-warning"></i> <b>Login</b></a>
 				|
 				<a href="<?=base_url()?>/register"><i class="fas fa-user-plus"></i> <b>Register</b></a>
+				<?php }else{ ?>
+				|
+				<a href="<?=base_url()?>/<?= (Session::user()->level == 1 || Session::user()->level == 3) ? 'admin' : 'pembeli' ?>"><i class="fa fa-user"></i> <?= Session::user()->nama_lengkap ? Session::user()->nama_lengkap : Session::user()->username ?></a>
+				|
+				<a href="<?=base_url()?>/logout"><i class="fa fa-sign-out-alt text-warning"></i> <b>Logout</b></a>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

@@ -293,7 +293,6 @@ class IndexController extends Controller
 		}
 
 		$param = (array) $request;
-		$param['level'] = 2;
 		$user = new User;
 		$user->save($param);
 		$this->redirect()->url("/login");
