@@ -21,10 +21,13 @@ class IndexController extends Controller
 
 	function upload(Request $request)
 	{
+		$jumlah_transfer = str_replace(".", "", $request->jumlah_transfer);
+		$jumlah_transfer = str_replace(",", "", $jumlah_transfer);
 		$bukti = $_FILES['bukti'];
 		copy($bukti['tmp_name'],'uploads/'.$bukti['name']);
 		$transaksi = Transaksi::where('id',$request->id)->first();
 		$transaksi->bukti = $bukti['name'];
+		$transaksi->jumlah_transfer = $jumlah_transfer;
 		$transaksi->status = 2;
 		$transaksi->save();
 		$this->redirect()->url('/pembeli');

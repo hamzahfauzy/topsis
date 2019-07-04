@@ -16,6 +16,7 @@
 				<table class="table table-bordered">
 					<tr>
 						<td>No</td>
+						<td>Invoice</td>
 						<td>Nama</td>
 						<td>Bukti</td>
 						<td>Status</td>
@@ -30,6 +31,11 @@
 					<tr>
 						<td><?= $no++ ?></td>
 						<td>
+							<a href="<?= base_url() ?>/pembeli/transaksi/invoice/<?= $rs->id ?>" class="text-primary" target="_blank">
+								#<?= strtoupper(substr(md5($rs->id), 0, 6)) ?>
+							</a>
+						</td>
+						<td>
 							<?= $rs->product()->nama ?>
 							<br>
 							Harga : Rp. <b><?=number_format($rs->product()->harga)?></b> 
@@ -38,12 +44,21 @@
 							<?php if(empty($rs->bukti)){ ?>
 							<form method="post" action="<?= base_url()?>/pembeli/upload" enctype="multipart/form-data">
 								<input type="hidden" name="id" value="<?= $rs->id ?>">
-								<label>Upload Bukti</label>
-								<input type="file" name="bukti" required="" class="form-control">
+								<div class="form-group">
+									<label>Jumlah Transfer</label>
+									<input type="number" name="jumlah_transfer" class="form-control">
+								</div>
+
+								<div class="form-group">
+									<label>Upload Bukti</label>
+									<input type="file" name="bukti" required="" class="form-control">
+								</div>
 								<button class="btn btn-info"><i class="fa fa-upload"></i> Upload</button>
 							</form>
 							<?php }else{ ?>
 								<a href="<?= base_url() ?>/uploads/<?= $rs->bukti ?>" class="btn btn-success"><i class="fa fa-eye"></i> Lihat Bukti</a>
+								<p></p>
+								<label>Jumlah Transfer : Rp. <b><?= number_format($rs->jumlah_transfer) ?></b></label>
 							<?php } ?>
 						</td>
 						<td>

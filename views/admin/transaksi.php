@@ -17,6 +17,7 @@
 						<td>Pembeli</td>
 						<td>Produk</td>
 						<td>Bukti</td>
+						<td>Jumlah Transfer</td>
 						<td>Status</td>
 					</tr>
 					<?php if(empty($transaksi)){ ?>
@@ -47,6 +48,9 @@
 							<?php }else{ ?>
 								<a href="<?= base_url() ?>/uploads/<?= $rs->bukti ?>" class="btn btn-success"><i class="fa fa-eye"></i> Lihat Bukti</a>
 							<?php } ?>
+						</td>
+						<td>
+							<?= $rs->status > 1 ? 'Rp. <b>'.@number_format($rs->jumlah_transfer).'</b>' : '' ?>
 						</td>
 						<td>
 							<?= 
