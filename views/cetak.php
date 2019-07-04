@@ -73,7 +73,7 @@
 					<td><b>Rp. <?= number_format($transaksi->product()->harga-$transaksi->jumlah_transfer) ?></b></td>
 				</tr>
 			</table>
-			<p align="center">Down payment (DP) di transfer ke Rekening : <b>23234456.13235.43.12342</b> an Ternak Rawang</p> 
+			<p align="center">Down payment (DP) di transfer ke Rekening : <b>23234456.13235.43.12342</b> atas nama Rawang Ternak Shop</p> 
 		</td>
 	</tr>
 </table>
